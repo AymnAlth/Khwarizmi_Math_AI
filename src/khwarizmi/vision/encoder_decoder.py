@@ -36,8 +36,7 @@ class VisionToLatexModel(nn.Module):
     def decode_with_syntax_guard(self, pixel_values: torch.Tensor, num_beams: int = 4) -> Tuple[str, float]:
         """Generates LaTeX predictions and applies C++ syntax validation across candidate beams."""
         if not self.is_loaded or self.model is None:
-            # Fallback simulated OCR prediction for pipeline verification
-            return r"3x - 9 = 15", 0.99
+            raise RuntimeError("Vision model backbone is not initialized.")
 
         pixel_values = pixel_values.to(DEVICE)
         generated_ids = self.model.generate(

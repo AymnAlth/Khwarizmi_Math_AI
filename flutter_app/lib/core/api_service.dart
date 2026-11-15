@@ -110,20 +110,25 @@ class ApiService {
         ),
       );
 
-      final streamedRes = await req.send().timeout(const Duration(seconds: 10));
+      final streamedRes = await req.send().timeout(const Duration(seconds: 15));
       final res = await http.Response.fromStream(streamedRes);
 
       if (res.statusCode == 200) {
         final data = jsonDecode(utf8.decode(res.bodyBytes));
         if (data['success'] == true && data['latex'] != null) {
-          return data['latex'].toString();
+          final latex = data['latex'].toString().trim();
+          if (latex.isNotEmpty) {
+            return latex;
+          }
         }
+        throw MathSolverException('لم يتم العثور على أي معادلة أو رموز رياضية مقروءة في الصورة.');
+      } else {
+        throw MathSolverException('استجابة غير صحيحة من محرك الرؤية (${res.statusCode})');
       }
-    } catch (_) {
-      // Fallback
+    } on MathSolverException {
+      rethrow;
+    } catch (e) {
+      throw MathSolverException('تعذر الاتصال بمحرك الرؤية الحاسوبية أو معالجة الصورة: $e');
     }
-
-    // Default heuristic fallback if backend offline
-    return '3x - 9 = 15';
   }
 }

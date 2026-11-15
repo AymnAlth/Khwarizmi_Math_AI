@@ -130,18 +130,25 @@ class _HomeScreenState extends State<HomeScreen> {
       final recognizedLatex = await _api.recognizeImage(bytes);
 
       if (mounted) {
+        if (recognizedLatex.trim().isEmpty) {
+          setState(() {
+            _isLoading = false;
+            _errorMessage = 'لم يتم التعرف على معادلة واضحة في الصورة، يرجى إعادة المحاولة بصورة أوضح.';
+          });
+          return;
+        }
         setState(() {
           _eqController.text = recognizedLatex;
           _isLoading = false;
         });
-        _copyToClipboard(recognizedLatex, 'تم استخراج المعادلة عبر الرؤية الحاسوبية بنجاح');
+        _copyToClipboard(recognizedLatex, 'تم استخراج المعادلة عبر الرؤية الحاسوبية بنجاح: $recognizedLatex');
         _handleSolve();
       }
     } catch (e) {
       if (mounted) {
         setState(() {
           _isLoading = false;
-          _errorMessage = 'تعذر معالجة الصورة: $e';
+          _errorMessage = '$e';
         });
       }
     }
@@ -158,15 +165,31 @@ class _HomeScreenState extends State<HomeScreen> {
             _errorMessage = null;
           });
 
-          final recognizedLatex = await _api.recognizeImage(bytes);
+          try {
+            final recognizedLatex = await _api.recognizeImage(bytes);
 
-          if (mounted) {
-            setState(() {
-              _eqController.text = recognizedLatex;
-              _isLoading = false;
-            });
-            _copyToClipboard(recognizedLatex, 'تم استخراج المعادلة من خط اليد بنجاح');
-            _handleSolve();
+            if (mounted) {
+              if (recognizedLatex.trim().isEmpty) {
+                setState(() {
+                  _isLoading = false;
+                  _errorMessage = 'لم يتم التعرف على معادلة واضحة من الرسم، يرجى إعادة الرسم بوضوح.';
+                });
+                return;
+              }
+              setState(() {
+                _eqController.text = recognizedLatex;
+                _isLoading = false;
+              });
+              _copyToClipboard(recognizedLatex, 'تم استخراج المعادلة من خط اليد بنجاح: $recognizedLatex');
+              _handleSolve();
+            }
+          } catch (e) {
+            if (mounted) {
+              setState(() {
+                _isLoading = false;
+                _errorMessage = '$e';
+              });
+            }
           }
         },
       ),
