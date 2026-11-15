@@ -32,8 +32,10 @@ var/
 sdist/
 develop-eggs/
 .installed.cfg
-lib/
-lib64/
+.venv/lib/
+venv/lib/
+env/lib/
+!flutter_app/lib/**
 .env
 .env.*
 .venv/
