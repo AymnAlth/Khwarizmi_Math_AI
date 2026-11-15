@@ -12,6 +12,7 @@
 *.pth
 *.onnx
 *.weights
+*.apk
 artifacts/gguf/
 artifacts/qwen_khwarizmi_merged/
 artifacts/qwen_khwarizmi_sft/*.safetensors
