@@ -1,0 +1,20 @@
+{
+  "numina_math": {
+    "repo_id": "AI-MO/NuminaMath-CoT",
+    "description": "860k CoT Mathematical Reasoning Dataset",
+    "sample_count": 10,
+    "status": "ACCESSIBLE"
+  },
+  "prm800k": {
+    "repo_id": "tasksource/PRM800K",
+    "description": "OpenAI Process Supervision (Step-Level Reward) Dataset",
+    "sample_count": 10,
+    "status": "ACCESSIBLE"
+  },
+  "im2latex": {
+    "repo_id": "yuntian-deng/im2latex-100k",
+    "description": "100k Printed Mathematical Formulas to LaTeX",
+    "sample_count": 10,
+    "status": "ACCESSIBLE"
+  }
+}

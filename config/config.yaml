@@ -1,0 +1,76 @@
+project:
+  name: "Al-Khwarizmi Neuro-Symbolic Math AI"
+  code_name: "khwarizmi_math_ai"
+  version: "1.0.0"
+  description: "End-to-End Arabic Mathematical Reasoner & Pedagogical Step-by-Step Solver"
+
+data:
+  fusion_sources:
+    vision_printed:
+      im2latex: "yuntian-deng/im2latex-100k"
+      unimernet: "wanderkid/UniMER_Dataset"
+    vision_handwritten:
+      hme100k: "SoyVitou/Latex-Math-HME100K"
+      crohme: "zhixiaoni/CROHME_selected_Train_2014_png"
+    reasoning_cot:
+      numina_math: "AI-MO/NuminaMath-CoT"
+    error_detection_prm:
+      prm800k: "tasksource/PRM800K"
+    arabic_synthesis:
+      target_size: 100000
+      generator: "hybrid_symbolic_template"
+
+  splits:
+    train_ratio: 0.85
+    val_ratio: 0.10
+    golden_test_ratio: 0.05
+
+vision:
+  architecture: "swin_mbart"
+  encoder_backbone: "microsoft/swin-base-patch4-window7-224"
+  decoder_backbone: "facebook/mbart-large-50"
+  image_size: [224, 224]
+  max_latex_len: 256
+  augmentation:
+    shear_angle: 15
+    rotation_range: [-15, 15]
+    color_jitter: [0.2, 0.2, 0.2]
+    grid_background_prob: 0.3
+    shadow_prob: 0.3
+
+symbolic:
+  engine: "sympy"
+  use_cpp_fast_guard: true
+  cpp_lib_path: "src/khwarizmi/symbolic/cpp_ext/libmath_core.so"
+  timeout_seconds: 5.0
+  max_derivation_steps: 20
+
+reasoning:
+  base_model: "Qwen/Qwen2.5-Math-7B"
+  edge_model: "Qwen/Qwen2.5-Math-1.5B"
+  quantization: "4bit" # QLoRA
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  schema:
+    enforce_structured_output: true
+    tags: ["[RULE]", "[LATEX]", "[EXPLANATION_AR]", "[STATUS]"]
+
+training:
+  algorithm: "GRPO" # Group Relative Policy Optimization
+  num_generations_per_prompt: 6
+  learning_rate: 2.0e-5
+  weight_decay: 0.01
+  batch_size: 2
+  gradient_accumulation_steps: 8
+  max_epochs: 5
+  curriculum:
+    stage_1: "basic_algebra"      # Linear, fractions, exponents
+    stage_2: "advanced_algebra"   # Quadratic, radicals, systems
+    stage_3: "transcendental"     # Trigonometric, exponential, logarithmic
+    stage_4: "calculus"           # Limits, derivatives, integrals
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 1

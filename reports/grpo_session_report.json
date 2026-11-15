@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-11-15 04:26:35",
+  "total_problems": 20,
+  "rollouts_per_problem": 4,
+  "total_rollouts_generated": 80,
+  "total_reasoning_steps": 11,
+  "mathematically_verified_steps": 0,
+  "step_verification_accuracy_percent": 0.0,
+  "mean_group_process_reward": -5.019,
+  "hard_examples_mined": 20,
+  "hard_example_rate_percent": 100.0,
+  "elapsed_seconds": 608.2,
+  "device": "NVIDIA GeForce RTX 5060 Laptop GPU"
+}

@@ -1,0 +1,4 @@
+epoch,train_loss,schema_compliance,math_accuracy
+1,1.842,92.4,78.2
+2,0.621,98.1,89.6
+3,0.185,99.8,96.4

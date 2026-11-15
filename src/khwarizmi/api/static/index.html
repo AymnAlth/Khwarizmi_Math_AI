@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>خوارزمي | منصة الاختبار السريع للاستدلال الرياضي</title>
+  <!-- KaTeX CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <style>
+    :root {
+      --bg: #0F1117;
+      --card-bg: #161922;
+      --input-bg: #10121A;
+      --border: #282D3D;
+      --accent-green: #10B981;
+      --accent-blue: #3B82F6;
+      --accent-red: #EF4444;
+      --text: #F3F4F6;
+      --text-muted: #9CA3AF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); min-height: 100vh; padding: 16px; display: flex; flex-direction: column; align-items: center; }
+    .container { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 16px; }
+
+    /* Header */
+    header { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .logo-badge { background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green); color: var(--accent-green); padding: 4px 12px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; }
+    .status-pill { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--accent-green); }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-green); }
+
+    /* Input Card */
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
+    .card-title { font-size: 0.95rem; font-weight: 600; color: var(--text-muted); margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+    
+    /* Live Preview */
+    .preview-box { background: var(--input-bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; min-height: 70px; display: flex; align-items: center; justify-content: center; overflow-x: auto; color: var(--accent-blue); font-size: 1.5rem; }
+    
+    /* Direct Text Input */
+    .input-row { display: flex; gap: 8px; margin-top: 10px; }
+    input[type="text"] { flex: 1; background: var(--input-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; color: #FFF; font-family: 'Consolas', monospace; font-size: 1rem; direction: ltr; text-align: left; outline: none; }
+    input[type="text"]:focus { border-color: var(--accent-blue); }
+    
+    /* Buttons */
+    button { cursor: pointer; border: none; outline: none; border-radius: 8px; padding: 8px 14px; font-weight: 600; font-size: 0.9rem; transition: all 0.15s ease; }
+    .btn-solve { background: linear-gradient(135deg, #2563EB, #1D4ED8); color: white; padding: 10px 24px; font-size: 1rem; }
+    .btn-solve:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-secondary { background: #202636; border: 1px solid #333C52; color: #93C5FD; font-size: 0.8rem; }
+    .btn-secondary:hover { background: #2A3347; }
+    
+    /* Quick Examples Bar */
+    .examples-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; align-items: center; }
+    .example-chip { background: #1B1F2B; border: 1px solid #282E3E; border-radius: 6px; padding: 4px 10px; font-size: 0.8rem; color: #9CA3AF; cursor: pointer; }
+    .example-chip:hover { color: #FFF; border-color: var(--accent-blue); }
+
+    /* Virtual Keypad */
+    .keypad-tabs { display: flex; gap: 6px; margin-bottom: 8px; }
+    .tab-btn { background: #1A1D27; border: 1px solid #2D3345; color: var(--text-muted); font-size: 0.8rem; padding: 6px 12px; }
+    .tab-btn.active { background: rgba(37, 99, 235, 0.25); border-color: var(--accent-blue); color: #60A5FA; }
+    .keys-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .key-btn { background: #1B1F2B; border: 1px solid #282E3E; color: white; height: 38px; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-family: monospace; border-radius: 8px; }
+    .key-btn:hover { background: #282E3E; }
+    .key-btn.op { background: #232938; color: #60A5FA; font-weight: bold; border-color: #384259; }
+
+    /* Final Result Card */
+    .result-card { background: linear-gradient(135deg, rgba(6, 78, 59, 0.4), #0F172A); border: 1.5px solid var(--accent-green); border-radius: 14px; padding: 18px; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.1); }
+    .result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .result-badge { display: flex; align-items: center; gap: 6px; color: #6EE7B7; font-weight: bold; font-size: 1rem; }
+    .result-display { background: #090D14; border: 1px solid #1E2D3D; border-radius: 10px; padding: 16px; text-align: center; font-size: 1.6rem; color: #34D399; overflow-x: auto; margin-bottom: 12px; }
+    .result-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+    /* Steps Section */
+    .steps-section { display: flex; flex-direction: column; gap: 10px; }
+    .step-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; border-right: 4px solid var(--accent-blue); }
+    .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .step-num { font-size: 0.85rem; font-weight: bold; color: var(--accent-blue); }
+    .step-rule { background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); color: #93C5FD; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; }
+    .step-math { background: var(--input-bg); border: 1px solid #1E2433; border-radius: 8px; padding: 10px; text-align: center; margin-bottom: 8px; color: #E5E7EB; font-size: 1.2rem; overflow-x: auto; }
+    .step-exp { font-size: 0.9rem; color: #D1D5DB; line-height: 1.6; }
+
+    /* Toast */
+    #toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1E2230; border: 1px solid var(--accent-green); color: white; padding: 8px 16px; border-radius: 8px; font-size: 0.9rem; display: none; z-index: 999; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span class="logo-badge">خوارزمي</span>
+        <span style="font-size: 0.9rem; color: var(--text-muted);">منصة الاختبار السريع للاستدلال والحل الرمزي</span>
+      </div>
+      <div class="status-pill">
+        <div class="status-dot"></div>
+        <span id="backend-status">المحرك متصل</span>
+      </div>
+    </header>
+
+    <!-- Equation Input Card -->
+    <div class="card">
+      <div class="card-title">
+        <span>المعادلة المدخلة (معاينة حية KaTeX):</span>
+        <div style="display: flex; gap: 6px;">
+          <button class="btn-secondary" onclick="copyEquation()">نسخ المعادلة</button>
+          <button class="btn-secondary" onclick="pasteEquation()">لصق</button>
+          <button class="btn-secondary" onclick="clearInput()">مسح</button>
+        </div>
+      </div>
+
+      <!-- Live KaTeX Display -->
+      <div id="math-preview" class="preview-box"></div>
+
+      <!-- Physical Keyboard Input Row -->
+      <div class="input-row">
+        <input type="text" id="eq-input" value="6/8" placeholder="اكتب هنا أو استخدم الكيبورد (مثال: 3x - 9 = 15 أو 6/8)" autocomplete="off">
+        <button class="btn-solve" id="btn-submit" onclick="solveEquation()">حل المسألة</button>
+      </div>
+
+      <!-- Quick Examples -->
+      <div class="examples-bar">
+        <span style="font-size: 0.8rem; color: var(--text-muted);">أمثلة سريعة:</span>
+        <span class="example-chip" onclick="loadExample('6/8')">اختزال كسر (6/8)</span>
+        <span class="example-chip" onclick="loadExample('3x - 9 = 15')">معادلة خطية (3x - 9 = 15)</span>
+        <span class="example-chip" onclick="loadExample('x^2 - 5x + 6 = 0')">معادلة تربيعية (x² - 5x + 6 = 0)</span>
+        <span class="example-chip" onclick="loadExample('x^2 - 4')">تحليل مقدار (x² - 4)</span>
+        <span class="example-chip" onclick="loadExample('1/2 + 1/4')">جمع كسور (1/2 + 1/4)</span>
+      </div>
+    </div>
+
+    <!-- Virtual On-Screen Keypad -->
+    <div class="card">
+      <div class="keypad-tabs">
+        <button class="tab-btn active" onclick="switchTab(0)">حساب وأرقام</button>
+        <button class="tab-btn" onclick="switchTab(1)">جبر وقوى</button>
+        <button class="tab-btn" onclick="switchTab(2)">تفاضل ودوال</button>
+      </div>
+      <div id="keypad-content"></div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading" style="display: none; text-align: center; color: var(--accent-blue); padding: 12px;">
+      جاري المعالجة الرياضية والاستدلال الرمزي...
+    </div>
+
+    <!-- Error Banner -->
+    <div id="error-banner" style="display: none; background: rgba(239, 68, 68, 0.15); border: 1px solid var(--accent-red); color: #FCA5A5; padding: 12px; border-radius: 8px;"></div>
+
+    <!-- Results Section -->
+    <div id="results-area" style="display: none; display: flex; flex-direction: column; gap: 16px;">
+      <!-- Final Result Card -->
+      <div class="result-card">
+        <div class="result-header">
+          <div class="result-badge">
+            <span style="background: var(--accent-green); color: black; border-radius: 50%; width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px;">✓</span>
+            <span>النتيجة النهائية الموثقة رمزياً</span>
+          </div>
+          <span id="latency-badge" style="font-size: 0.8rem; color: var(--text-muted); font-family: monospace;">0 ms</span>
+        </div>
+        <div id="final-answer-display" class="result-display"></div>
+        <div class="result-actions">
+          <button class="btn-secondary" onclick="copyFinalResult()">نسخ النتيجة</button>
+          <button class="btn-solve" style="padding: 6px 14px; font-size: 0.85rem;" onclick="copyFullSolution()">نسخ الحل كاملاً</button>
+        </div>
+      </div>
+
+      <!-- Step-by-Step Title -->
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span id="steps-count-title" style="font-weight: bold; font-size: 1.05rem;">خطوات الاستدلال والشرح المنهجي:</span>
+        <button class="btn-secondary" onclick="copyFullSolution()">نسخ الشرح كاملاً</button>
+      </div>
+
+      <!-- Steps List -->
+      <div id="steps-container" class="steps-section"></div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    let currentResult = null;
+    const input = document.getElementById('eq-input');
+    const preview = document.getElementById('math-preview');
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.innerText = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 2000);
+    }
+
+    function formatForLatex(raw) {
+      let s = (raw || '').trim();
+      if (!s) return '\\dots';
+      let ob = (s.match(/\{/g) || []).length;
+      let cb = (s.match(/\}/g) || []).length;
+      if (ob > cb) s += '}'.repeat(ob - cb);
+      let op = (s.match(/\(/g) || []).length;
+      let cp = (s.match(/\)/g) || []).length;
+      if (op > cp) s += ')'.repeat(op - cp);
+      return s;
+    }
+
+    function updatePreview() {
+      const latex = formatForLatex(input.value);
+      try {
+        katex.render(latex, preview, { throwOnError: false, displayMode: true });
+      } catch (e) {
+        preview.innerText = input.value;
+      }
+    }
+
+    input.addEventListener('input', updatePreview);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        solveEquation();
+      }
+    });
+
+    function insertMath(text, cursorOffset = 0) {
+      const start = input.selectionStart || input.value.length;
+      const end = input.selectionEnd || input.value.length;
+      const cur = input.value;
+      input.value = cur.substring(0, start) + text + cur.substring(end);
+      const newPos = start + text.length - cursorOffset;
+      input.focus();
+      input.setSelectionRange(newPos, newPos);
+      updatePreview();
+    }
+
+    function clearInput() {
+      input.value = '';
+      updatePreview();
+      input.focus();
+    }
+
+    function copyEquation() {
+      navigator.clipboard.writeText(input.value);
+      showToast('تم نسخ المعادلة إلى الحافظة');
+    }
+
+    async function pasteEquation() {
+      try {
+        const text = await navigator.clipboard.readText();
+        if (text) {
+          input.value = text.trim();
+          updatePreview();
+          solveEquation();
+        }
+      } catch (err) {
+        showToast('يرجى لصق المعادلة يدوياً (Ctrl+V)');
+      }
+    }
+
+    function loadExample(eq) {
+      input.value = eq;
+      updatePreview();
+      solveEquation();
+    }
+
+    // Keypads definition
+    const keypads = [
+      // 0: Basic
+      [
+        { label: 'x', insert: 'x' }, { label: 'y', insert: 'y' }, { label: 'z', insert: 'z' }, { label: '(', insert: '(' }, { label: ')', insert: ')' },
+        { label: '7', insert: '7' }, { label: '8', insert: '8' }, { label: '9', insert: '9' }, { label: '÷', insert: ' / ', op: true }, { label: 'DEL', action: () => { input.value = input.value.slice(0, -1); updatePreview(); }, op: true },
+        { label: '4', insert: '4' }, { label: '5', insert: '5' }, { label: '6', insert: '6' }, { label: '×', insert: ' * ', op: true }, { label: '^', insert: '^', op: true },
+        { label: '1', insert: '1' }, { label: '2', insert: '2' }, { label: '3', insert: '3' }, { label: '-', insert: ' - ', op: true }, { label: '+', insert: ' + ', op: true },
+        { label: 'AC', action: clearInput, op: true }, { label: '0', insert: '0' }, { label: '.', insert: '.' }, { label: '=', insert: ' = ', op: true }, { label: 'حل', action: solveEquation, op: true, special: true }
+      ],
+      // 1: Algebra
+      [
+        { label: 'a/b', insert: '\\frac{}{}', offset: 3, op: true }, { label: '√x', insert: '\\sqrt{}', offset: 1, op: true }, { label: 'ⁿ√x', insert: '\\sqrt[]{}', offset: 3, op: true }, { label: 'xⁿ', insert: '^{}', offset: 1, op: true }, { label: '|x|', insert: '|', op: true },
+        { label: '≤', insert: ' \\le ', op: true }, { label: '≥', insert: ' \\ge ', op: true }, { label: '≠', insert: ' \\ne ', op: true }, { label: '≈', insert: ' \\approx ', op: true }, { label: 'Δ', insert: '\\Delta ', op: true },
+        { label: 'a', insert: 'a' }, { label: 'b', insert: 'b' }, { label: 'c', insert: 'c' }, { label: 'k', insert: 'k' }, { label: 'n', insert: 'n' },
+        { label: 'log', insert: '\\log(' }, { label: 'ln', insert: '\\ln(' }, { label: '10ⁿ', insert: '10^{}', offset: 1 }, { label: 'eⁿ', insert: 'e^{}', offset: 1 }, { label: 'حل', action: solveEquation, op: true, special: true }
+      ],
+      // 2: Calculus
+      [
+        { label: 'd/dx', insert: '\\frac{d}{dx}(' }, { label: '∫', insert: '\\int ' }, { label: '∫ₐᵇ', insert: '\\int_{}^{}', offset: 3 }, { label: 'lim', insert: '\\lim_{x \\to 0}(' }, { label: '∞', insert: '\\infty ' },
+        { label: 'sin', insert: '\\sin(' }, { label: 'cos', insert: '\\cos(' }, { label: 'tan', insert: '\\tan(' }, { label: 'cot', insert: '\\cot(' }, { label: 'sec', insert: '\\sec(' },
+        { label: 'sin⁻¹', insert: '\\arcsin(' }, { label: 'cos⁻¹', insert: '\\arccos(' }, { label: 'tan⁻¹', insert: '\\arctan(' }, { label: 'sinh', insert: '\\sinh(' }, { label: 'cosh', insert: '\\cosh(' },
+        { label: 'θ', insert: '\\theta ' }, { label: 'α', insert: '\\alpha ' }, { label: 'β', insert: '\\beta ' }, { label: 'λ', insert: '\\lambda ' }, { label: 'حل', action: solveEquation, op: true, special: true }
+      ]
+    ];
+
+    function switchTab(idx) {
+      document.querySelectorAll('.tab-btn').forEach((b, i) => {
+        b.classList.toggle('active', i === idx);
+      });
+      renderKeypad(idx);
+    }
+
+    function renderKeypad(idx) {
+      const container = document.getElementById('keypad-content');
+      container.innerHTML = '';
+      const grid = document.createElement('div');
+      grid.className = 'keys-grid';
+
+      keypads[idx].forEach(k => {
+        const btn = document.createElement('button');
+        btn.className = 'key-btn' + (k.op ? ' op' : '');
+        btn.innerText = k.label;
+        if (k.special) {
+          btn.style.background = 'linear-gradient(135deg, #2563EB, #1D4ED8)';
+          btn.style.color = 'white';
+        }
+        btn.onclick = (e) => {
+          e.preventDefault();
+          if (k.action) k.action();
+          else insertMath(k.insert, k.offset || 0);
+        };
+        grid.appendChild(btn);
+      });
+      container.appendChild(grid);
+    }
+
+    // Solve API Execution
+    async function solveEquation() {
+      const eq = input.value.trim();
+      if (!eq) return;
+
+      const loading = document.getElementById('loading');
+      const errorBanner = document.getElementById('error-banner');
+      const resultsArea = document.getElementById('results-area');
+
+      loading.style.display = 'block';
+      errorBanner.style.display = 'none';
+      resultsArea.style.display = 'none';
+
+      try {
+        const resp = await fetch('/api/v1/solve', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ equation_latex: eq })
+        });
+
+        const data = await resp.json();
+        loading.style.display = 'none';
+
+        if (!resp.ok) {
+          errorBanner.innerText = data.detail || 'تعذر حل المسألة.';
+          errorBanner.style.display = 'block';
+          return;
+        }
+
+        currentResult = data;
+        renderResults(data);
+      } catch (err) {
+        loading.style.display = 'none';
+        errorBanner.innerText = 'تعذر الاتصال بالخادم: ' + err.message;
+        errorBanner.style.display = 'block';
+      }
+    }
+
+    function renderResults(data) {
+      const resultsArea = document.getElementById('results-area');
+      const finalDisplay = document.getElementById('final-answer-display');
+      const latencyBadge = document.getElementById('latency-badge');
+      const stepsContainer = document.getElementById('steps-container');
+      const stepsTitle = document.getElementById('steps-count-title');
+
+      latencyBadge.innerText = data.computation_time_ms + ' ms';
+      katex.render(data.final_answer, finalDisplay, { throwOnError: false, displayMode: true });
+
+      stepsTitle.innerText = `خطوات الاستدلال والشرح المنهجي (${data.steps.length} خطوات):`;
+      stepsContainer.innerHTML = '';
+
+      data.steps.forEach(s => {
+        const card = document.createElement('div');
+        card.className = 'step-card';
+
+        const mathHtml = katex.renderToString(s.latex, { throwOnError: false, displayMode: true });
+
+        card.innerHTML = `
+          <div class="step-header">
+            <span class="step-num">الخطوة ${s.step_num}: ${s.rule_name_ar}</span>
+            <span class="step-rule">${s.rule_code}</span>
+          </div>
+          <div class="step-math">${mathHtml}</div>
+          <div class="step-exp">${s.explanation_ar}</div>
+        `;
+        stepsContainer.appendChild(card);
+      });
+
+      resultsArea.style.display = 'flex';
+    }
+
+    function copyFinalResult() {
+      if (!currentResult) return;
+      navigator.clipboard.writeText(currentResult.final_answer);
+      showToast('تم نسخ النتيجة النهائية');
+    }
+
+    function copyFullSolution() {
+      if (!currentResult) return;
+      let text = `=== حل خوارزمي الرياضي الموثق ===\n`;
+      text += `المسألة: ${input.value}\n`;
+      text += `النتيجة النهائية: ${currentResult.final_answer}\n`;
+      text += `زمن المعالجة: ${currentResult.computation_time_ms} ms\n\n`;
+      text += `--- مسار الاستدلال والخطوات المنهجية ---\n`;
+      currentResult.steps.forEach(s => {
+        text += `الخطوة ${s.step_num}: [${s.rule_name_ar}]\n`;
+        text += `الصيغة: ${s.latex}\n`;
+        text += `الشرح: ${s.explanation_ar}\n\n`;
+      });
+      navigator.clipboard.writeText(text);
+      showToast('تم نسخ الحل والشرح بالكامل إلى الحافظة');
+    }
+
+    // Initialize
+    updatePreview();
+    renderKeypad(0);
+    solveEquation();
+  </script>
+</body>
+</html>

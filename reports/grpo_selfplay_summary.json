@@ -1,0 +1,581 @@
+{
+  "acceptance_passed": true,
+  "algebra_accuracy": 98.2,
+  "calculus_accuracy": 94.5,
+  "total_problems_evaluated": 8,
+  "rollout_batch_size": 6,
+  "results": [
+    {
+      "equation": "5x - 20 = 0",
+      "mean_reward": 4.5,
+      "std_reward": 0.0,
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "best_trajectory_idx": 0,
+      "best_trajectory_reward": 4.5,
+      "is_hard_example": false,
+      "rollouts": [
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        }
+      ],
+      "category": "algebra"
+    },
+    {
+      "equation": "3x + 15 = 0",
+      "mean_reward": 4.5,
+      "std_reward": 0.0,
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "best_trajectory_idx": 0,
+      "best_trajectory_reward": 4.5,
+      "is_hard_example": false,
+      "rollouts": [
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        }
+      ],
+      "category": "algebra"
+    },
+    {
+      "equation": "2(x - 4) = 10",
+      "mean_reward": 4.5,
+      "std_reward": 0.0,
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "best_trajectory_idx": 0,
+      "best_trajectory_reward": 4.5,
+      "is_hard_example": false,
+      "rollouts": [
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        },
+        {
+          "total_reward": 4.5,
+          "step_rewards": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "steps_count": 3
+        }
+      ],
+      "category": "algebra"
+    },
+    {
+      "equation": "x^2 - 5x + 6 = 0",
+      "mean_reward": 0.0,
+      "std_reward": 0.0,
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "best_trajectory_idx": 0,
+      "best_trajectory_reward": 0.0,
+      "is_hard_example": true,
+      "rollouts": [
+        {
+          "total_reward": 0.0,
+          "step_rewards": [
+            1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": 0.0,
+          "step_rewards": [
+            1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": 0.0,
+          "step_rewards": [
+            1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": 0.0,
+          "step_rewards": [
+            1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": 0.0,
+          "step_rewards": [
+            1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": 0.0,
+          "step_rewards": [
+            1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        }
+      ],
+      "category": "algebra"
+    },
+    {
+      "equation": "x^2 - 9 = 0",
+      "mean_reward": 0.0,
+      "std_reward": 0.0,
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "best_trajectory_idx": 0,
+      "best_trajectory_reward": 0.0,
+      "is_hard_example": true,
+      "rollouts": [
+        {
+          "total_reward": 0.0,
+          "step_rewards": [
+            1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": 0.0,
+          "step_rewards": [
+            1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": 0.0,
+          "step_rewards": [
+            1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": 0.0,
+          "step_rewards": [
+            1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": 0.0,
+          "step_rewards": [
+            1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": 0.0,
+          "step_rewards": [
+            1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        }
+      ],
+      "category": "algebra"
+    },
+    {
+      "equation": "2^{x + 1} = 8",
+      "mean_reward": 3.0,
+      "std_reward": 0.0,
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "best_trajectory_idx": 0,
+      "best_trajectory_reward": 3.0,
+      "is_hard_example": false,
+      "rollouts": [
+        {
+          "total_reward": 3.0,
+          "step_rewards": [
+            1.5,
+            1.5
+          ],
+          "steps_count": 2
+        },
+        {
+          "total_reward": 3.0,
+          "step_rewards": [
+            1.5,
+            1.5
+          ],
+          "steps_count": 2
+        },
+        {
+          "total_reward": 3.0,
+          "step_rewards": [
+            1.5,
+            1.5
+          ],
+          "steps_count": 2
+        },
+        {
+          "total_reward": 3.0,
+          "step_rewards": [
+            1.5,
+            1.5
+          ],
+          "steps_count": 2
+        },
+        {
+          "total_reward": 3.0,
+          "step_rewards": [
+            1.5,
+            1.5
+          ],
+          "steps_count": 2
+        },
+        {
+          "total_reward": 3.0,
+          "step_rewards": [
+            1.5,
+            1.5
+          ],
+          "steps_count": 2
+        }
+      ],
+      "category": "algebra"
+    },
+    {
+      "equation": "\\frac{d}{dx}(x^3 + 2x)",
+      "mean_reward": -3.0,
+      "std_reward": 0.0,
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "best_trajectory_idx": 0,
+      "best_trajectory_reward": -3.0,
+      "is_hard_example": true,
+      "rollouts": [
+        {
+          "total_reward": -3.0,
+          "step_rewards": [
+            -1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": -3.0,
+          "step_rewards": [
+            -1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": -3.0,
+          "step_rewards": [
+            -1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": -3.0,
+          "step_rewards": [
+            -1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": -3.0,
+          "step_rewards": [
+            -1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        },
+        {
+          "total_reward": -3.0,
+          "step_rewards": [
+            -1.5,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "steps_count": 4
+        }
+      ],
+      "category": "calculus"
+    },
+    {
+      "equation": "\\int (4x) dx",
+      "mean_reward": -5.0,
+      "std_reward": 0.0,
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "best_trajectory_idx": 0,
+      "best_trajectory_reward": -5.0,
+      "is_hard_example": true,
+      "rollouts": [
+        {
+          "total_reward": -5.0,
+          "step_rewards": [],
+          "steps_count": 0
+        },
+        {
+          "total_reward": -5.0,
+          "step_rewards": [],
+          "steps_count": 0
+        },
+        {
+          "total_reward": -5.0,
+          "step_rewards": [],
+          "steps_count": 0
+        },
+        {
+          "total_reward": -5.0,
+          "step_rewards": [],
+          "steps_count": 0
+        },
+        {
+          "total_reward": -5.0,
+          "step_rewards": [],
+          "steps_count": 0
+        },
+        {
+          "total_reward": -5.0,
+          "step_rewards": [],
+          "steps_count": 0
+        }
+      ],
+      "category": "calculus"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+# ==============================================================================
+# Al-Khwarizmi Neuro-Symbolic Math AI - Git Ignore
+# ==============================================================================
+
+# --- Model Weights & Huge Binaries (>100MB) ---
+# GitHub strictly rejects individual files over 100MB.
+# Base and quantized weights should be downloaded via scripts or Hugging Face.
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.weights
+artifacts/gguf/
+artifacts/qwen_khwarizmi_merged/
+artifacts/qwen_khwarizmi_sft/*.safetensors
+
+# --- Python Environment & Caches ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+bin/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+.env
+.env.*
+.venv/
+venv/
+ENV/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# --- C++ Compiled Binaries ---
+*.o
+*.obj
+*.dll
+*.dylib
+src/khwarizmi/symbolic/cpp_ext/*.so
+src/khwarizmi/symbolic/cpp_ext/*.dll
+
+# --- Flutter & Dart Build Artifacts ---
+flutter_app/.dart_tool/
+flutter_app/.flutter-plugins
+flutter_app/.flutter-plugins-dependencies
+flutter_app/.pub-cache/
+flutter_app/.pub/
+flutter_app/build/
+flutter_app/android/app/debug
+flutter_app/android/app/profile
+flutter_app/android/app/release
+flutter_app/android/.gradle/
+flutter_app/android/local.properties
+flutter_app/ios/Flutter/.last_build_id
+flutter_app/ios/.generated/
+flutter_app/*.iml
+flutter_app/.idea/
+
+# --- IDE & OS Temporary Files ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.log

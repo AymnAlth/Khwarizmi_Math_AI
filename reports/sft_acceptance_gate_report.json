@@ -1,0 +1,10 @@
+{
+  "total_evaluated": 500,
+  "schema_compliance_rate": 100.0,
+  "mathematical_accuracy": 100.0,
+  "gate_criteria": {
+    "schema_threshold": 99.0,
+    "math_threshold": 85.0
+  },
+  "passed_acceptance_gate": true
+}
