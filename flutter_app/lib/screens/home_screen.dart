@@ -825,26 +825,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Row(
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.all(6),
-                                          decoration: const BoxDecoration(
-                                            color: Color(0xFF10B981),
-                                            shape: BoxShape.circle,
+                                    Expanded(
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets.all(6),
+                                            decoration: const BoxDecoration(
+                                              color: Color(0xFF10B981),
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: const Icon(Icons.check, color: Colors.black, size: 16),
                                           ),
-                                          child: const Icon(Icons.check, color: Colors.black, size: 16),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        const Text(
-                                          'النتيجة النهائية الموثقة رمزياً',
-                                          style: TextStyle(
-                                            color: Color(0xFF6EE7B7),
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
+                                          const SizedBox(width: 8),
+                                          const Flexible(
+                                            child: Text(
+                                              'النتيجة النهائية الموثقة رمزياً',
+                                              style: TextStyle(
+                                                color: Color(0xFF6EE7B7),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                     Container(
                                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
@@ -885,8 +890,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 const SizedBox(height: 12),
 
                                 // Quick Action Buttons for the Result
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                Wrap(
+                                  alignment: WrapAlignment.end,
+                                  spacing: 8,
+                                  runSpacing: 8,
                                   children: [
                                     OutlinedButton.icon(
                                       icon: const Icon(Icons.copy, size: 14),
@@ -894,18 +901,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                       style: OutlinedButton.styleFrom(
                                         foregroundColor: const Color(0xFF6EE7B7),
                                         side: const BorderSide(color: Color(0xFF059669)),
-                                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                                       ),
                                       onPressed: () => _copyToClipboard(_result!.finalAnswer, 'تم نسخ النتيجة النهائية'),
                                     ),
-                                    const SizedBox(width: 8),
                                     ElevatedButton.icon(
                                       icon: const Icon(Icons.content_copy_outlined, size: 14),
                                       label: const Text('نسخ الحل كاملاً', style: TextStyle(fontSize: 12)),
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: const Color(0xFF059669),
                                         foregroundColor: Colors.white,
-                                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                                       ),
                                       onPressed: _copyFullSolution,
                                     ),
@@ -921,15 +927,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  children: [
-                                    const Icon(Icons.menu_book_outlined, color: Color(0xFF60A5FA), size: 20),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      'مسار الاستدلال والشرح المنهجي (${_result!.steps.length} خطوات):',
-                                      style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
+                                Expanded(
+                                  child: Row(
+                                    children: [
+                                      const Icon(Icons.menu_book_outlined, color: Color(0xFF60A5FA), size: 20),
+                                      const SizedBox(width: 8),
+                                      Flexible(
+                                        child: Text(
+                                          'مسار الاستدلال والشرح المنهجي (${_result!.steps.length} خطوات):',
+                                          style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 TextButton.icon(
                                   icon: const Icon(Icons.copy_all_outlined, size: 14, color: Colors.white54),
