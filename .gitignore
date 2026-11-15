@@ -66,6 +66,7 @@ flutter_app/android/app/debug
 flutter_app/android/app/profile
 flutter_app/android/app/release
 flutter_app/android/.gradle/
+flutter_app/android/.kotlin/
 flutter_app/android/local.properties
 flutter_app/ios/Flutter/.last_build_id
 flutter_app/ios/.generated/
