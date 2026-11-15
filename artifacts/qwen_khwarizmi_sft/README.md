@@ -1,207 +1,103 @@
 ---
+language:
+- ar
+- en
+license: mit
 base_model: Qwen/Qwen2.5-Math-1.5B-Instruct
 library_name: peft
 pipeline_tag: text-generation
 tags:
-- base_model:adapter:Qwen/Qwen2.5-Math-1.5B-Instruct
-- lora
-- transformers
+- math
+- reasoning
+- arabic
+- neuro-symbolic
+- cot
+- qlora
+- grpo
+- education
+- sympy
+- qwen2.5-math
+model_creator: Ayman Al-Dhahabi
+model_name: Al-Khwarizmi Math AI (Qwen2.5-Math-1.5B-Arabic-Reasoner)
+widget:
+- text: "اشرح باللغة العربية خطوة بخطوة مع أولويات العمليات حل المقدار: 100 - 25 * 3 + 14"
 ---
 
-# Model Card for Model ID
-
-<!-- Provide a quick summary of what the model is/does. -->
-
-
-
-## Model Details
-
-### Model Description
-
-<!-- Provide a longer summary of what this model is. -->
-
-
-
-- **Developed by:** [More Information Needed]
-- **Funded by [optional]:** [More Information Needed]
-- **Shared by [optional]:** [More Information Needed]
-- **Model type:** [More Information Needed]
-- **Language(s) (NLP):** [More Information Needed]
-- **License:** [More Information Needed]
-- **Finetuned from model [optional]:** [More Information Needed]
-
-### Model Sources [optional]
-
-<!-- Provide the basic links for the model. -->
-
-- **Repository:** [More Information Needed]
-- **Paper [optional]:** [More Information Needed]
-- **Demo [optional]:** [More Information Needed]
-
-## Uses
-
-<!-- Address questions around how the model is intended to be used, including the foreseeable users of the model and those affected by the model. -->
-
-### Direct Use
-
-<!-- This section is for the model use without fine-tuning or plugging into a larger ecosystem/app. -->
-
-[More Information Needed]
-
-### Downstream Use [optional]
-
-<!-- This section is for the model use when fine-tuned for a task, or when plugged into a larger ecosystem/app -->
-
-[More Information Needed]
-
-### Out-of-Scope Use
-
-<!-- This section addresses misuse, malicious use, and uses that the model will not work well for. -->
-
-[More Information Needed]
-
-## Bias, Risks, and Limitations
-
-<!-- This section is meant to convey both technical and sociotechnical limitations. -->
-
-[More Information Needed]
-
-### Recommendations
-
-<!-- This section is meant to convey recommendations with respect to the bias, risk, and technical limitations. -->
-
-Users (both direct and downstream) should be made aware of the risks, biases and limitations of the model. More information needed for further recommendations.
-
-## How to Get Started with the Model
-
-Use the code below to get started with the model.
-
-[More Information Needed]
-
-## Training Details
-
-### Training Data
-
-<!-- This should link to a Dataset Card, perhaps with a short stub of information on what the training data is all about as well as documentation related to data pre-processing or additional filtering. -->
-
-[More Information Needed]
-
-### Training Procedure
-
-<!-- This relates heavily to the Technical Specifications. Content here should link to that section when it is relevant to the training procedure. -->
-
-#### Preprocessing [optional]
-
-[More Information Needed]
-
-
-#### Training Hyperparameters
-
-- **Training regime:** [More Information Needed] <!--fp32, fp16 mixed precision, bf16 mixed precision, bf16 non-mixed precision, fp16 non-mixed precision, fp8 mixed precision -->
-
-#### Speeds, Sizes, Times [optional]
-
-<!-- This section provides information about throughput, start/end time, checkpoint size if relevant, etc. -->
-
-[More Information Needed]
-
-## Evaluation
-
-<!-- This section describes the evaluation protocols and provides the results. -->
-
-### Testing Data, Factors & Metrics
-
-#### Testing Data
-
-<!-- This should link to a Dataset Card if possible. -->
-
-[More Information Needed]
-
-#### Factors
-
-<!-- These are the things the evaluation is disaggregating by, e.g., subpopulations or domains. -->
-
-[More Information Needed]
-
-#### Metrics
-
-<!-- These are the evaluation metrics being used, ideally with a description of why. -->
-
-[More Information Needed]
-
-### Results
-
-[More Information Needed]
-
-#### Summary
-
-
-
-## Model Examination [optional]
-
-<!-- Relevant interpretability work for the model goes here -->
-
-[More Information Needed]
-
-## Environmental Impact
-
-<!-- Total emissions (in grams of CO2eq) and additional considerations, such as electricity usage, go here. Edit the suggested text below accordingly -->
-
-Carbon emissions can be estimated using the [Machine Learning Impact calculator](https://mlco2.github.io/impact#compute) presented in [Lacoste et al. (2019)](https://arxiv.org/abs/1910.09700).
-
-- **Hardware Type:** [More Information Needed]
-- **Hours used:** [More Information Needed]
-- **Cloud Provider:** [More Information Needed]
-- **Compute Region:** [More Information Needed]
-- **Carbon Emitted:** [More Information Needed]
-
-## Technical Specifications [optional]
-
-### Model Architecture and Objective
-
-[More Information Needed]
-
-### Compute Infrastructure
-
-[More Information Needed]
-
-#### Hardware
-
-[More Information Needed]
-
-#### Software
-
-[More Information Needed]
-
-## Citation [optional]
-
-<!-- If there is a paper or blog post introducing the model, the APA and Bibtex information for that should go in this section. -->
-
-**BibTeX:**
-
-[More Information Needed]
-
-**APA:**
-
-[More Information Needed]
-
-## Glossary [optional]
-
-<!-- If relevant, include terms and calculations in this section that can help readers understand the model or model card. -->
-
-[More Information Needed]
-
-## More Information [optional]
-
-[More Information Needed]
-
-## Model Card Authors [optional]
-
-[More Information Needed]
-
-## Model Card Contact
-
-[More Information Needed]
-### Framework versions
-
-- PEFT 0.21.3
+# 🧮 خوارزمي | Al-Khwarizmi Math AI
+### نموذج الاستدلال الرياضي والشرح التربوي العصبي-الرمزي باللغة العربية
+**An Industrial-Grade, Neuro-Symbolic Mathematical Reasoner & Pedagogical Explainer**
+
+[![Developer](https://img.shields.io/badge/Developer-Ayman%20Al--Dhahabi-blue.svg)](https://github.com/AymnAlth)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Khwarizmi__Math__AI-black?logo=github)](https://github.com/AymnAlth/Khwarizmi_Math_AI)
+[![Base Model](https://img.shields.io/badge/Base%20Model-Qwen2.5--Math--1.5B-indigo)](https://huggingface.co/Qwen/Qwen2.5-Math-1.5B-Instruct)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+---
+
+## 👤 معلومات المطور (Developer Profile)
+* **المطور الرئيسي:** **أيمن الذاهبي (Ayman Al-Dhahabi)**
+* **البريد الإلكتروني:** [a77499n@gmail.com](mailto:a77499n@gmail.com)
+* **الهاتف / واتساب:** [+967 774998429](tel:+967774998429)
+* **المستودع الرسمي:** [https://github.com/AymnAlth/Khwarizmi_Math_AI](https://github.com/AymnAlth/Khwarizmi_Math_AI)
+
+---
+
+## 📌 نبذة عن النموذج (Model Overview)
+نموذج **خوارزمي (Al-Khwarizmi Math AI)** هو نموذج استدلالي متخصص تم تدريبه بالاعتماد على `Qwen/Qwen2.5-Math-1.5B-Instruct` لتقديم حلول وشروحات تربوية دقيقة خطوة بخطوة للمسائل والمعادلات الرياضية باللغة العربية الفصحى.
+
+تم تصميم النموذج ليعمل ضمن معمارية **عصبية-رمزية (Neuro-Symbolic Architecture)** هجينة، حيث تتولى الشبكة العصبية تفكيك المسألة واستنتاج سلاسل التفكير المنطقي (`<think>`) وصياغة الشرح التربوي باللغة العربية، بينما يتولى المحرك الرمزي (SymPy) التحقق الحسابي القطعي لكل خطوة للقضاء التام على الهلوسة الحسابية.
+
+---
+
+## 🎯 تفاصيل التدريب المنهجي (Training Details)
+* **تقنية التدريب:** QLoRA (4-bit NormalFloat quantization with `bfloat16` compute).
+* **معاملات LoRA:** رتبة المصفوفة $r = 16$، معامل التكبير $\alpha = 32$، ومعدل الإسقاط $\text{dropout} = 0.05$.
+* **الوحدات المستهدفة (Target Modules):** `q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj`.
+* **المنهج التعليمي (Curriculum Learning):** تم التدريب على 4 مراحل تصاعدية:
+  1. **المرحلة الأولى:** العمليات الحسابية، أولويات العمليات، تبسيط الكسور، والمعادلات الخطية.
+  2. **المرحلة الثانية:** المعادلات التربيعية، المميز الجبري، وتحليل المقادير.
+  3. **المرحلة الثالثة:** الدوال الأسية واللوغاريتمية.
+  4. **المرحلة الرابعة:** التفاضل، الاشتقاق، والتكامل.
+* **التعلم التعزيزي (GRPO):** تحسين الاستدلال عبر خوارزمية *Group Relative Policy Optimization* مع الإشراف على خطوات الحل (Process Supervision).
+
+---
+
+## 💻 طريقة استخدام النموذج برمجياً (Quick Inference Code)
+
+```python
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from peft import PeftModel
+
+BASE_MODEL = "Qwen/Qwen2.5-Math-1.5B-Instruct"
+ADAPTER_REPO = "ModeAyman/Khwarizmi-Math-AI"
+
+# 1. تحميل الموزع والنموذج الأساسي
+tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, trust_remote_code=True)
+base_model = AutoModelForCausalLM.from_pretrained(
+    BASE_MODEL,
+    torch_dtype=torch.bfloat16,
+    device_map="auto",
+    trust_remote_code=True,
+)
+
+# 2. دمج أوزان خوارزمي المدربة (LoRA)
+model = PeftModel.from_pretrained(base_model, ADAPTER_REPO)
+model.eval()
+
+# 3. إعداد المدخل باللغة العربية
+prompt = "حل المقدار التالي مع الشرح التربوي باللغة العربية وأولويات العمليات: 100 - 25 * 3 + 14"
+messages = [{"role": "user", "content": prompt}]
+text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+inputs = tokenizer([text], return_tensors="pt").to(model.device)
+
+# 4. توليد الحل الاستدلالي
+outputs = model.generate(**inputs, max_new_tokens=512, temperature=0.3)
+response = tokenizer.decode(outputs[0][len(inputs.input_ids[0]):], skip_special_tokens=True)
+print(response)
+```
+
+---
+
+## 📜 الترخيص (License)
+هذا النموذج منشور ومتاح للاستخدام الأكاديمي والبحثي تحت رخصة **MIT License**.

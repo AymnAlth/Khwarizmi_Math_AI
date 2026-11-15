@@ -8,6 +8,7 @@
 [![Python 3.12](https://img.shields.io/badge/Python-3.12%20Modern-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![PyTorch 2.6 CUDA](https://img.shields.io/badge/PyTorch-2.6%20CUDA-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org)
 [![Core Model](https://img.shields.io/badge/Base%20Model-Qwen2.5--Math--1.5B-6366F1?style=for-the-badge)](https://huggingface.co/Qwen)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Model%20Hub-ModeAyman%2FKhwarizmi--Math--AI-yellow.svg?style=for-the-badge&logo=huggingface)](https://huggingface.co/ModeAyman/Khwarizmi-Math-AI)
 [![Symbolic Core](https://img.shields.io/badge/Symbolic-SymPy%201.14%20Formal%20CAS-7A9A32?style=for-the-badge)](https://www.sympy.org)
 [![C++ Syntax Guard](https://img.shields.io/badge/C%2B%2B-O3%20Syntax%20Guard-00599C?style=for-the-badge&logo=c%2B%2B)](src/khwarizmi/symbolic/cpp_ext/)
 [![GRPO RL](https://img.shields.io/badge/RL-GRPO%20Curriculum-10B981?style=for-the-badge)](#-المرحلة-الثالثة-التعلم-التعزيزي-المبني-على-مكافأة-العمليات-grpo)
@@ -17,7 +18,7 @@
 
 <br/>
 
-**[🌐 المنصة الحية](http://localhost:8000)** • **[📑 التوثيق البرمجي التفاعلي API](http://localhost:8000/docs)** • **[📱 تطبيق Flutter](flutter_app/)** • **[📊 تقارير القبول والاعتماد](reports/)** • **[👤 بطاقة المطور](#-بطاقة-المطور-والمسؤول-الهندسي)**
+**[🤗 نموذج Hugging Face الرسمي](https://huggingface.co/ModeAyman/Khwarizmi-Math-AI)** • **[🌐 المنصة الحية](http://localhost:8000)** • **[📑 التوثيق البرمجي التفاعلي API](http://localhost:8000/docs)** • **[📱 تطبيق Flutter](flutter_app/)** • **[📊 تقارير القبول والاعتماد](reports/)** • **[👤 بطاقة المطور](#-بطاقة-المطور-والمسؤول-الهندسي)**
 
 </div>
 
